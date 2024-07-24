@@ -2,6 +2,9 @@
 
 const Row = (prop)=>{
 console.log("vehiclesind",prop.vehicles);
+const user = localStorage.getItem('userInfo')
+const userObj = JSON.parse(user)
+
   return(
   <>
    {
@@ -14,7 +17,9 @@ console.log("vehiclesind",prop.vehicles);
             <td >{vehicle.manufacture}</td>
             <td>{vehicle.model}</td>
             <td>{vehicle.image}</td>
-            <td>Delete</td>
+            {userObj && (<>
+              <td>Edit</td>
+              <td>Delete</td></>)}
             </tr>
           )
         })

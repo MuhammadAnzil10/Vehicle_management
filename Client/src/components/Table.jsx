@@ -2,7 +2,8 @@
 import "./Table.css";
 import Row from "./Row";
 import { useEffect, useState } from "react";
-const Table = ()=>{
+const Table = (prop)=>{
+  
 const [vehicles, setVehicles] = useState([])
 
   useEffect(()=>{
@@ -15,20 +16,16 @@ const [vehicles, setVehicles] = useState([])
     const data = await response.json()
    setVehicles(data.vehicles)
   }
-  console.log("rerendering...");
-  console.log("veg",vehicles);
   return(
     <div className="table-container">
        <table className="table">
        <thead>
         <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Manufatcure</th>
-          <th>Model</th>
-          <th>Image</th>
-          <th>Action</th>
+        {prop.row.map((field)=>{
+          return(
+            <th key={field}>{field}</th>
+          )
+        })}
         </tr>
        </thead>
         <tbody>
