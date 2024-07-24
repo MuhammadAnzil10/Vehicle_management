@@ -7,8 +7,6 @@ const loginAuthentication = async (req, res) => {
   try {
     const { email, password } = req.body;
   const admin = await Admin.findOne({ email: email });
-  console.log(req.body);
-  console.log(admin)
   if(!admin){
     return res.status(400).json({status:false,error: "Invalid Credentials" })
   }
@@ -26,7 +24,6 @@ const loginAuthentication = async (req, res) => {
 
 const addVehicle = async(req,res)=>{
   try {
-    const {name,description,price,manufacture,model,image} = req.body;
     const newVehicle = await Vehicle.create(req.body);
     return res.status(200).json({status:true,vehicle:newVehicle})
   } catch (error) {
@@ -60,7 +57,6 @@ const removeVehicle = async(req,res)=>{
 try {
   const {id} = req.body;
   const vehicle = await Vehicle.deleteOne({_id:id})
-  console.log(vehicle);
   res.status(200).json({status:true,message:"removed successfully"});
 
 } catch (error) {
