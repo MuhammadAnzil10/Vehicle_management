@@ -1,39 +1,42 @@
 
-import "./Table.css";
-import Row from "./Row";
-import { useEffect, useState } from "react";
-const Table = (prop)=>{
-  
-const [vehicles, setVehicles] = useState([])
+import { Table as BootstrapTable, Button } from "react-bootstrap";
 
-  useEffect(()=>{
-    if(vehicles.length < 1)
-    fetchData();
-  },[vehicles])
-  const fetchData = async()=>{
-    console.log("");
-    const response = await fetch("http://localhost:3008/api/vehicles");
-    const data = await response.json()
-   setVehicles(data.vehicles)
-  }
-  return(
-    <div className="table-container">
-       <table className="table">
-       <thead>
+const Table = ({ headings, data, isAdmin, onEdit = () => {}, onRemove = () => {},}) => {
+  return (
+    <BootstrapTable striped bordered hover>
+      <thead>
         <tr>
-        {prop.row.map((field)=>{
-          return(
-            <th key={field}>{field}</th>
-          )
-        })}
+          {headings.map((heading, index) => (
+            <th key={index}>{heading}</th>
+          ))}
         </tr>
-       </thead>
-        <tbody>
-        {vehicles.length > 0 && <Row vehicles={vehicles}/> }
-        </tbody>
-       </table>
-    </div>
-  )
-}
+      </thead>
+      <tbody>
+        {data.map((vehicle, index) => (
+          <tr key={vehicle._id}>
+            <td>{index + 1}</td>
+            <td>{vehicle.name}</td>
+            <td>{vehicle.description}</td>
+            <td>{vehicle.price}</td>
+            <td>{vehicle.manufacture}</td>
+            <td>{vehicle.model}</td>
+            <td>{vehicle.image}</td>
+            {isAdmin && (
+              <td>
+                {" "}
+                <Button variant="warning" onClick={() => onEdit(index)}>
+                  Edit
+                </Button>{" "}
+                <Button variant="danger" onClick={() => onRemove(index)}>
+                  Remove
+                </Button>
+              </td>
+            )}
+          </tr>
+        ))}
+      </tbody>
+    </BootstrapTable>
+  );
+};
 
 export default Table;

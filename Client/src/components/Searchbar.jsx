@@ -1,15 +1,21 @@
 import { useState } from "react";
+import { Form, FormControl } from 'react-bootstrap';
 
-const Searchbar =()=>{
-const [search, setSearch] = useState('')
+const Searchbar =({searchText, setSearchText})=>{
+ 
 
-const handleClick = ()=>{
 
-}
   return(
      <div className="search-bar">
-      <input type="text"  value={search}  placeholder="Search by name" onChange={(e)=>setSearch(e.target.value)}/>
-      <button onClick={handleClick}>Search</button>
+       <Form className="mb-3">
+        <FormControl
+          type="text"
+          placeholder="Search"
+          className="mr-sm-2"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+      </Form>
      </div>
   )
 }
