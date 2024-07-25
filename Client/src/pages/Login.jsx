@@ -70,24 +70,3 @@ return (
 
 
 export default Login;
-
-//   return (
-//     <div className="form-wrapper">
-//       <form className="login-form" onSubmit={handleSubmit}>
-//         <h1>Login</h1>
-//         <label htmlFor="">Email</label>
-//         <input
-//           type="email"
-//           placeholder="Email"
-//           onChange={(e) => setEmail(e.target.value)}
-//         />
-//         <label htmlFor="">Password</label>
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           onChange={(e) => setPassword(e.target.value)}
-//         />
-//         <button>Login</button>
-//       </form>
-//     </div>
-//   );
