@@ -6,9 +6,9 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser")
 dotenv.config()
 const port = 3008;
-const dbConnect = require("./Server/config/db.js")
-const adminRouter =require("./Server/routers/admin.routes.js")
-const userRoutes =  require("./Server/routers/user.routes.js")
+const dbConnect = require("./config/db.js")
+const adminRouter =require("./routers/admin.routes.js")
+const userRoutes =  require("./routers/user.routes.js")
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(cookieParser())
