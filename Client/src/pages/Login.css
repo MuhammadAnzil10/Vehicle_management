@@ -4,16 +4,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  width: 350px;
+  height: 350px;
+  border-radius: 17px;
+}
+.container{
+  margin-top: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	flex-direction: column;
+  color: white;
 }
 
-.login-form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center ;
- 
+.container h1{
+  color: black;
 }
-input{
-  margin-bottom: 1rem;
-}
+

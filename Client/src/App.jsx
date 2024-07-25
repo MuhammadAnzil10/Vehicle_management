@@ -2,6 +2,7 @@ import Dashboard from "./pages/Dashboard"
 import { BrowserRouter,Routes,Route } from "react-router-dom"
 import Login from "./pages/Login.jsx"
 import Home from "./pages/Home.jsx"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
