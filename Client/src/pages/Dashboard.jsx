@@ -15,10 +15,24 @@ const [searchText, setSearchText] = useState('');
     fetchData();
   },[vehicles])
   const fetchData = async()=>{
-    console.log("");
     const response = await fetch("/api/vehicles");
     const data = await response.json()
    setVehicles(data.vehicles)
+  }
+  const onRemove =async (id)=>{
+  try {
+    const response = await fetch("/api/admin/remove-vehicle",{
+      method:"DELETE",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({id})
+     })
+     const data = await response.json();
+     if(data.status){
+      setVehicles(vehicles.filter((vehicle)=>vehicle._id !== id))
+     }
+  } catch (error) {
+    alert("Error occured",error.message);
+  }
   }
  
  const filteredData =  filterData(vehicles,searchText);
@@ -27,7 +41,7 @@ const [searchText, setSearchText] = useState('');
     <div className="wrapper">
      <Header/>
      <Searchbar searchText={searchText} setSearchText={setSearchText} />
-     {vehicles.length > 0 && <Table headings={headings} data={filteredData} isAdmin/>}
+     {vehicles.length > 0 && <Table headings={headings} data={filteredData} isAdmin  onRemove={onRemove}/>}
     </div>
   )
 }

@@ -1,8 +1,9 @@
-
+import "./Table.css"
 import { Table as BootstrapTable, Button } from "react-bootstrap";
 
 const Table = ({ headings, data, isAdmin, onEdit = () => {}, onRemove = () => {},}) => {
   return (
+  <div className="table-responsive"  >
     <BootstrapTable striped bordered hover>
       <thead>
         <tr>
@@ -24,10 +25,10 @@ const Table = ({ headings, data, isAdmin, onEdit = () => {}, onRemove = () => {}
             {isAdmin && (
               <td>
                 {" "}
-                <Button variant="warning" onClick={() => onEdit(index)}>
+                <Button variant="warning" size="sm" onClick={() => onEdit(vehicle._id)}>
                   Edit
                 </Button>{" "}
-                <Button variant="danger" onClick={() => onRemove(index)}>
+                <Button variant="danger" size="sm" onClick={() => onRemove(vehicle._id)}>
                   Remove
                 </Button>
               </td>
@@ -36,6 +37,7 @@ const Table = ({ headings, data, isAdmin, onEdit = () => {}, onRemove = () => {}
         ))}
       </tbody>
     </BootstrapTable>
+  </div>
   );
 };
 
