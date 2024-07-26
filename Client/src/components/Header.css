@@ -5,3 +5,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.wrapper h1{
+  border: 2px solid #d7bdbd;
+	border-radius: 5px 18px;
+	padding: 5px;
+}
