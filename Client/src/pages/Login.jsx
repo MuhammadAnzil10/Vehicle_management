@@ -2,19 +2,23 @@
  import { useNavigate } from "react-router-dom";
 import "./Login.css";
  import validateInput from "../utils/validateInput.js";
- import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+ import {Button, Form, Spinner} from 'react-bootstrap';
+
+
 
  const Login = () => {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [check, setCheck] = useState(false)
+   const [loading, isLoading] = useState(false)
    const navigate = useNavigate();
 
    const handleSubmit = (e) => {
      e.preventDefault();
+     isLoading(true);
      const isValid = validateInput(email, password);
      if (!isValid) {
+      isLoading(false);
        return alert("Enter valid input");
      }
 
@@ -30,14 +34,17 @@ import Form from 'react-bootstrap/Form';
        const data = await response.json();
        console.log(data);
        if (!data.status) {
+        isLoading(false);
          return alert("Login failed");
        }
       
        const strData = JSON.stringify(data);
        localStorage.setItem("userInfo", strData);
+       isLoading(false);
        navigate("/");
        alert("login success");
      } catch (error) {
+      isLoading(false);
        alert("login failed");
      }
    };
@@ -59,7 +66,7 @@ return (
       <Form.Check type="checkbox" id="password"  label="Show password" onClick={handleCheck} />
     </Form.Group>
     <Button variant="primary"  type="submit">
-      Submit
+      {loading ? <Spinner variant="primary" animation="boarder" /> : "Submit"}
     </Button>
   </Form>
     </div>
